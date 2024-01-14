@@ -1,0 +1,28 @@
+---
+- name: Buat Pengguna Baru
+  hosts: all
+  become: true
+  tasks:
+    - name: buat user irwan
+      ansible.builtin.user:
+        name: irwan
+        password: "irwan123"
+        groups: sudo
+        state: present
+        shell: "/bin/bash"
+        system: true
+        create_home: true
+        home: "/home/irwan"
+
+    - name: setup sshd config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#?PasswordAuthentication'
+        line: 'PasswordAuthentication yes'
+      notify: Restart SSH Service
+
+  handlers:
+    - name: Restart SSH Service
+      service:
+        name: sshd
+        state: restarted

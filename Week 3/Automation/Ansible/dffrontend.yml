@@ -1,0 +1,17 @@
+- name: Deploy dumbflix frontend with Docker
+  hosts: appserver
+  become: true
+  tasks:
+    - name: Pull irwanpanai/dffrontend:1.0  Docker image
+      docker_image:
+        name: irwanpanai/dffrontend:1.0
+        source: pull
+
+    - name: Run the dumbflix-fe container
+      docker_container:
+        name: dumbflix-fe
+        image: irwanpanai/dffrontend:1.0
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "3333:3000"

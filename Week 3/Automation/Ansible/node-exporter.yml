@@ -1,0 +1,17 @@
+- name: Deploy Node Exporter with Docker
+  hosts: all
+  become: true
+  tasks:
+    - name: Pull the bitnami/node-exporter Docker image
+      docker_image:
+        name: bitnami/node-exporter
+        source: pull
+
+    - name: Run the Node Exporter container
+      docker_container:
+        name: node-exp
+        image: bitnami/node-exporter
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "9100:9100"

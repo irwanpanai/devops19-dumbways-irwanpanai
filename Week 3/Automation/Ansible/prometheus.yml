@@ -1,0 +1,16 @@
+---
+global:
+  scrape_interval: 15s
+scrape_configs:
+  - job_name: appserver
+    static_configs:
+      - targets:
+          - 103.127.132.62:9100
+        labels:
+          instance: appserver
+  - job_name: gateway
+    static_configs:
+      - targets:
+          - 103.127.132.55:9100
+        labels:
+          instance: gateway

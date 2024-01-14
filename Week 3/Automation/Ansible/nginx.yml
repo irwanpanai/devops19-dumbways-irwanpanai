@@ -1,0 +1,36 @@
+---
+- become: true
+  gather_facts: false
+  hosts: gateway
+  tasks:
+    - name: "Installing nginx"
+      apt:
+        name: nginx
+        state: latest
+        update_cache: yes
+    - name: start nginx
+      service:
+        name: nginx
+        state: started
+    - name: copy proxy.conf
+      copy:
+        src: /home/irwan/ansible/rproxy.conf
+        dest: /etc/nginx/sites-enabled/
+    - name: Install Certbot
+      community.general.snap:
+        name: certbot
+        classic: yes
+    - name: Obtain and install SSL certificate with Certbot Nginx dumbflix-fe
+      command: certbot --nginx -d irwan.studentdumbways.my.id --non-interactive --agree-tos --email irwanpanai@gmail.com
+    - name: Obtain and install SSL certificate with Certbot Nginx exporterapp
+      command: certbot --nginx -d exporterapp-irwan.studentdumbways.my.id --non-interactive --agree-tos --email irwanpanai@gmail.com
+    - name: Obtain and install SSL certificate with Certbot Nginx exportergate
+      command: certbot --nginx -d exportergate-irwan.studentdumbways.my.id --non-interactive --agree-tos --email irwanpanai@gmail.com
+    - name: Obtain and install SSL certificate with Certbot Nginx Prometheus
+      command: certbot --nginx -d prom-irwan.studentdumbways.my.id --non-interactive --agree-tos --email irwanpanai@gmail.com
+    - name: Obtain and install SSL certificate with Certbot Nginx grafana
+      command: certbot --nginx -d monitoring-irwan.studentdumbways.my.id --non-interactive --agree-tos --email irwanpanai@gmail.com
+    - name: reloaded nginx
+      service:
+        name: nginx
+        state: reloaded

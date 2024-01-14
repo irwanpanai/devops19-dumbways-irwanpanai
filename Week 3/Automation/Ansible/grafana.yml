@@ -1,0 +1,17 @@
+- name: Deploy grafana with Docker
+  hosts: appserver
+  become: true
+  tasks:
+    - name: Pull the grafana/grafana Docker image
+      docker_image:
+        name: grafana/grafana
+        source: pull
+
+    - name: Run the grafana container
+      docker_container:
+        name: grafana
+        image: grafana/grafana
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "3000:3000"

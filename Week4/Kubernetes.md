@@ -38,3 +38,14 @@
 
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/c9e3c80b-fdae-404b-bce7-d8be4fcd8660)
 
+## Setup pvc
+
+![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/a970c2bc-4923-46f2-a555-54a4b4438e94)
+
+![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/72927df7-d0c9-4b45-919d-912ab8a6f779)
+
+![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/c6466207-07a6-4dc7-8ee7-d088c525c3a1)
+
+![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/e5c7d3c4-1db2-486a-8874-7fb685adcdae)
+
+![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/92138a08-128d-479f-ab6c-ad0d23c92c02)

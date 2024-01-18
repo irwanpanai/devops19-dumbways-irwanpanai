@@ -31,3 +31,10 @@
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/25812806-4674-4d5b-8713-61cfc609abec)
 
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/a7641278-2ecb-41bd-a721-e33f866ccf27)
+
+## Ingress Configuration
+
+![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/d2cf9674-1231-467c-8731-316863920237)
+
+![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/c9e3c80b-fdae-404b-bce7-d8be4fcd8660)
+

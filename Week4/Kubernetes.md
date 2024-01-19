@@ -1,5 +1,7 @@
 # Kubernetes
 
+Kubernetes adalah sistem orkestrasi kontainer open-source yang mengotomatiskan pemasangan, skala, dan pengelolaan aplikasi kontainer. Kubernetes menangani kompleksitas operasi sehingga Anda dapat menskalakan beban kerja dan mengelola deployment kontainer di beberapa server. 
+
 ## Membuat sebuah cluster menggunakan k3s yang berisikan 2 node as a master and worker.
 
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/f2c568ca-0394-4179-bcef-30d0ba85b8e6)

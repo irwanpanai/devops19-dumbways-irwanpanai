@@ -332,20 +332,22 @@ use test
 3.buat dummy database
 
 - membuat collection baru
+
 ```
 db.createCollection("dummydb")
 ```
 
 - isi collection dengan data dummy
+
   ```
   db.mycollection.insertMany([
   { name: "John Doe", age: 25, city: "New York" },
   { name: "Jane Smith", age: 30, city: "San Francisco" },
   { name: "Bob Johnson", age: 28, city: "Los Angeles" }
-])
-
+  ])
   ```
-- Gunakan perintah find() untuk menampilkan semua data dalam koleksi 
+- Gunakan perintah find() untuk menampilkan semua data dalam koleksi
+
   ```
   db.dummydb.find()
   ```

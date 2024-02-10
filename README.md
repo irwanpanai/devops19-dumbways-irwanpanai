@@ -38,3 +38,4 @@ Mengkonfigurasi Dashboard di Grafana beserta Alerting
 
 ### [1. Kubernetes](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/blob/main/Week4/Kubernetes.md)
 
+k3s instalation, ingress configuration, pvc, deploy with manifest, make a dummy data

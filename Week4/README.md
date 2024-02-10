@@ -10,4 +10,31 @@ Instalasi VM di Biznetgio, mengimplentasi SSH , Deploy Aplikasi Frontend & Setup
 
 Instalasi VM di Biznetgio, setup SSH config, Instalasi MySQL, Konfigurasi Aplikasi Frontend & Backend dan satabase agar Saling Terhubung
 
-## [Week2]()
+## [Week2](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/tree/main/Week2)
+
+### [1. Docker](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/blob/main/Week2/1.%20Docker.md)
+
+Instalasi Docker, Deploy Aplikasi, Reverse Proxy & SSL Certificate on Top Docker
+
+### [2. CICD: Jenkins](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/blob/main/Week2/2.%20CICD%3A%20Jenkins.md)
+
+Jalankan Jenkins on Top Docker, Pipeline Frontend & Backend, Reverse Proxy & SSL Certificate, Auto Trigger Build Pipeline, discord notification
+
+### [3. CICD: GitlabCI](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/blob/main/Week2/3.%20CICD%3A%20GitlabCI.md)
+
+Jalankan GitlabCI, Pipeline Frontend & Backend, Reverse Proxy & SSL Certificate, Auto Trigger Build Pipeline, discord notification
+
+## [Week3](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/tree/main/Week3)
+
+### [1. Ansible](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/blob/main/Week3/2.%20Ansible.md)
+
+Membuat konfigurasi Ansible dan melakukan semua setup terhadap server yang dituju melalui server lokal sebanyak mungkin
+
+### [2. Monitoring](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/blob/main/Week3/1.%20Monitoring.md)
+
+Mengkonfigurasi Dashboard di Grafana beserta Alerting
+
+## [Week4](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/tree/main/Week4)
+
+### [1. Kubernetes](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/blob/main/Week4/Kubernetes.md)
+

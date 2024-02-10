@@ -173,7 +173,7 @@ kubctl apply -f nginx.yaml
 
 PVC, atau Persistent Volume Claim, adalah konsep dalam Kubernetes yang digunakan untuk mengelola penyimpanan persisten dalam klaster.
 
-buat file ```pvc.yaml```
+1. buat file ```pvc.yaml```
 
 ```
 
@@ -191,21 +191,29 @@ spec:
     - ReadWriteOnce
 
 ```
-edit ```config.yaml``` yang ada di node master dan worker dan tambahkan default local path
+2. edit ```config.yaml``` yang ada di node master dan worker dan tambahkan default local path
 ```
-default-loccal-storage-path:   
+default-local-storage-path: /mnt/disk1  
 ```
+```node master```
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/a970c2bc-4923-46f2-a555-54a4b4438e94)
-
+```node worker```
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/72927df7-d0c9-4b45-919d-912ab8a6f779)
 
+storageclass telah terbuat
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/c6466207-07a6-4dc7-8ee7-d088c525c3a1)
 
+3. apply pvc
+```
+kubectl apply -f .\pvc.yaml
+```
+pvc dalam status pending menunggu firstconsumer
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/e5c7d3c4-1db2-486a-8874-7fb685adcdae)
 
-buat ```pod.yml```
-```
 
+4. membuat ```pod.yml``` untuk membuat firstconsumer untuk pvc
+
+```
 apiVersion: v1
 kind: Pod
 metadata:
@@ -227,7 +235,7 @@ spec:
       claimName: local-path-pvc
 
 ```
-
+ mongodb berhasil di deploy
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/92138a08-128d-479f-ab6c-ad0d23c92c02)
 
 ## Deploy mongodb with pvc
@@ -295,15 +303,51 @@ spec:
 
 ```
 
+```
+kubectl apply -f dbmongol.yaml
+```
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/e08623bb-1d9e-4577-b905-03ec3ade1589)
 
+mongodb telah berhasil di deploy 
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/6c01ea97-bcb7-44d4-8fa1-dff33406f0fc)
 
 ## Membuat Dummy Database 
 
+1. akses pod mongodb dengfan memasukkan perintah
+
+```
+kubectl exec -it pod/mongodb-0 /bin/bash -n irwan
+```
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/c88700e1-a8fc-4ddd-bad6-ce36f20029f0)
 
+2. menggunakan database test
+```
+show databases
+```
+```
+use test
+```
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/d406393a-b08f-423d-8060-93a6b7cfa09d)
 
+3.buat dummy database
+
+- membuat collection baru
+```
+db.createCollection("dummydb")
+```
+
+- isi collection dengan data dummy
+  ```
+  db.mycollection.insertMany([
+  { name: "John Doe", age: 25, city: "New York" },
+  { name: "Jane Smith", age: 30, city: "San Francisco" },
+  { name: "Bob Johnson", age: 28, city: "Los Angeles" }
+])
+
+  ```
+- Gunakan perintah find() untuk menampilkan semua data dalam koleksi 
+  ```
+  db.dummydb.find()
+  ```
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/3fc935a8-7cb7-48c4-b50c-81faddc8be90)
 

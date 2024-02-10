@@ -39,3 +39,14 @@ Mengkonfigurasi Dashboard di Grafana beserta Alerting
 ### [1. Kubernetes](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/blob/main/Week4/Kubernetes.md)
 
 k3s instalation, ingress configuration, pvc, deploy with manifest, make a dummy data
+
+## [Final Task](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/tree/main/Final%20Task)
+
+1. Managed Server via Ansible
+2. Deployed with Cloudflare DNS
+3. Dockerized Image with Docker with multistage build
+4. Database used PostgreSQL and Deployed with Railway
+5. SSL Certified Proxies with Certbot
+6. Working Automated Pipeline CI/CD with GitlabCI
+7. Collect Data Metric with Node Exporter & Prometheus
+8. Monitored with Grafana

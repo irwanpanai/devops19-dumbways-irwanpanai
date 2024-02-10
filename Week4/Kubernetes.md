@@ -4,34 +4,101 @@ Kubernetes adalah sistem orkestrasi kontainer open-source yang mengotomatiskan p
 
 ## Membuat sebuah cluster menggunakan k3s yang berisikan 2 node as a master and worker.
 
+1.Mengubah hostname
+
+```server appserver```
+```
+sudo hostnamectl set-hostname master
+```
+```server gateway```
+```
+sudo hostnamectl set-hostname worker
+```
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/f2c568ca-0394-4179-bcef-30d0ba85b8e6)
 
+2. masuk ke root agar tidak perlu mengubah perizinan dan melakukan download ```k3s```
+
+```
+curl -sfL https://get.k3s.io | sh -
+```
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/acbfdc67-6b22-4c0f-8a53-d9668b5c0d68)
+
+3. cek k3s jika sudah terinstall
+
+```
+kubectl get node
+```
 
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/85b4d2ed-7a14-4dd3-84b5-6446e192ac44)
 
+4. copy token k3s untuk menambahkan k3s agent
+
+```
+cat /var/lib/rancher/k3s/server/token
+```
+
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/470fae8c-7a78-4ddb-b5cc-287a371d82bc)
 
+5. menginstall k3s di node worker
+
+```
+curl -sfL https://get.k3s.io | K3S_URL={$IP_NODE_MASTER:6433} K3S_TOKEN={$TOKEN} sh -
+```
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/b06647d5-de79-41fd-8b00-029fd507583f)
+
+6. cek k3s jika sudah terinstall
+
+```
+kubectl get node -o wide
+```
 
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/a8d220cf-7ef9-4d33-9d5b-7f134713041b)
 
 ## Install ingress nginx using manifest
 
+1. menonaktifkan webserver default dari k3s yaitu ```traefik``` dan load balancing
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/b478cded-1fde-474f-85f1-b7601ea89986)
 
-![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/ed1216db-dbf0-4f78-af4b-851bf491390c)
-
+```node master```
+```
+nano /etc/rancher/k3s/config.yaml
+```
+```
+cluster-init: true
+disable: servicelb
+disable: traefik
+```
+```
+systemctl restart k3s
+```
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/00652a7e-a117-461b-8006-0766b1219901)
 
+```node worker```
+```
+nano /etc/rancher/node/config.yaml
+```
+```
+disable: servicelb
+disable: traefik
+```
+```
+systemctl restart k3s-agent
+```
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/dd3a2d96-dbbd-4c5e-b254-1bf056f29a31)
 
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/da8cee8c-6ec9-4967-b73d-9d84dd469fae)
 
+k3s sudah terhapus
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/f6decb40-155b-4621-84ca-b2343082f7db)
 
+2. instal nginx menggunakan manifest
+
+```
+nano var/lib/rancher/k3s/server/manifests/ingress-nginx.yaml
+```
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/25812806-4674-4d5b-8713-61cfc609abec)
 
+nginx berhasil di install
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/a7641278-2ecb-41bd-a721-e33f866ccf27)
 
 ## Ingress Configuration
@@ -84,7 +151,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: irwan.studentdumbways.id  
+  - host: irwan.studentdumbways.my.id  
     http:
       paths:
       - path: /
@@ -95,12 +162,17 @@ spec:
             port:
               number: 80
 ```
-
+apply konfiguras dengan memasukkan perintah
+```
+kubctl apply -f nginx.yaml
+```
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/d2cf9674-1231-467c-8731-316863920237)
 
-![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/c9e3c80b-fdae-404b-bce7-d8be4fcd8660)
 
 ## Setup pvc
+
+PVC, atau Persistent Volume Claim, adalah konsep dalam Kubernetes yang digunakan untuk mengelola penyimpanan persisten dalam klaster.
+
 buat file ```pvc.yaml```
 
 ```
@@ -119,7 +191,10 @@ spec:
     - ReadWriteOnce
 
 ```
-
+edit ```config.yaml``` yang ada di node master dan worker dan tambahkan default local path
+```
+default-loccal-storage-path:   
+```
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/a970c2bc-4923-46f2-a555-54a4b4438e94)
 
 ![image](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/assets/89429810/72927df7-d0c9-4b45-919d-912ab8a6f779)

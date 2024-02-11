@@ -14,7 +14,7 @@ Instalasi VM di Biznetgio, setup SSH config, Instalasi MySQL, Konfigurasi Aplika
 
 ### [1. Docker](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/blob/main/Week2/1.%20Docker.md)
 
-Instalasi Docker, Deploy Aplikasi, Reverse Proxy & SSL Certificate on Top Docker
+Rebuild VM biznetgio, Instalasi Docker, Deploy Aplikasi, Reverse Proxy & SSL Certificate on Top Docker
 
 ### [2. CICD: Jenkins](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/blob/main/Week2/2.%20CICD%3A%20Jenkins.md)
 

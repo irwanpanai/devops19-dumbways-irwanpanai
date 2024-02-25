@@ -34,6 +34,10 @@ Membuat konfigurasi Ansible dan melakukan semua setup terhadap server yang dituj
 
 Mengkonfigurasi Dashboard di Grafana beserta Alerting
 
+### [3. Terraform](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/blob/main/Week3/3.%20Terraform.md)
+
+Mendeploy Wayshub-fe on Top Docker menggunakan Terraform
+
 ## [Week4](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/tree/main/Week4)
 
 ### [1. Kubernetes](https://github.com/irwanpanai/devops19-dumbways-irwanpanai/blob/main/Week4/Kubernetes.md)
